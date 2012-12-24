@@ -23,6 +23,7 @@ struct page_t {
 	char     *title; // title tag
 	char     *keys;  // meta keywords tag, or NULL
 	char     *desc;  // meta description tag, or NULL
+	char     *error; // http status
 	char     *text;  // unfiltered text
 	char     *html;  // generated html
 };
@@ -44,5 +45,5 @@ void print_link(char *path, char *name, int cur);
 void print_menu(menu_t *menu, int first, int last);
 
 /* Global functions */
-void print_header(void);
+void print_header(page_t *page);
 void print_page(page_t *page, menu_t *menu);

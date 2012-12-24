@@ -247,13 +247,15 @@ static void do_regular(page_t *page, const char *file)
 		else
 			page->html = markdown_to_string(page->text, 0, 0);
 	} else {
-		page->html = g_strdup("Page not found");
+		page->error = g_strdup("403 Forbidden");
+		page->html  = g_strdup("Page not accessable\n");
 	}
 }
 
 static void do_notfound(page_t *page, const char *path)
 {
-	page->html = "Page not found";
+	page->error = g_strdup("404 Not Found");
+	page->html  = g_strdup("Page not found\n");
 }
 
 static char *clean(const char *src)
@@ -277,9 +279,7 @@ static char *clean(const char *src)
 /* Main */
 int main(int argc, char **argv)
 {
-	char *path = clean(getenv("PATH_INFO") ?: "/aweather/");
-
-	print_header();
+	char *path = clean(getenv("PATH_INFO") ?: "/");
 
 	page_t *page = get_page(path);
 	menu_t *menu = get_menu(path);
@@ -303,6 +303,7 @@ int main(int argc, char **argv)
 	g_free(index);
 	g_free(file);
 
+	print_header(page);
 	print_page(page, menu);
 
 	return 0;

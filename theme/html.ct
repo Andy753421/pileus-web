@@ -1,7 +1,7 @@
-<% #include "string.h" %>
 <% #include "html.h" %>
 
-<% void print_header(void) { %>
+<% void print_header(page_t *page) { %>
+<% if (page->error) %><%% "Status: %s\n", page->error %>
 Content-Type: text/html;charset=UTF-8
 
 <% } %>
@@ -16,7 +16,7 @@ Content-Type: text/html;charset=UTF-8
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<title><% if (page->title) printf("%s - ", page->title); %>pileus.org</title>
+		<title><% if (page->title) %><%% "%s - ", page->title %>pileus.org</title>
 		<link href="<% href("theme/style.css"); %>" rel="stylesheet" type="text/css" />
 		<meta http-equiv="X-UA-Compatible" content="IE=9" />
 		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
@@ -30,7 +30,7 @@ Content-Type: text/html;charset=UTF-8
 	<body>
 		<div class="title">
 			<a href="<% href(""); %>">pileus.org</a>
-			<span><% if (page->title) printf("%s", page->title); %></span>
+			<span><% if (page->title) %><%= page->title %></span>
 		</div>
 		<h1 class="nav">
 			<% print_menu(menu, 0, 0); %>
@@ -46,7 +46,12 @@ Content-Type: text/html;charset=UTF-8
 			<% print_menu(menu, 1, -1); %>
 		</h2>
 		<div class="content">
-			<%= page->html %>
+			<% if (page->error) { %>
+				<h1><%= page->error %></h1>
+				<h2><%= page->html  %></h2>
+			<% } else { %>
+				<%= page->html %>
+			<% } %>
 			<div class="bottom"></div>
 		</div>
 		<div class="footer">
