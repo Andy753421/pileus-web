@@ -1,0 +1,8 @@
+*~
+*.cgi
+*.o
+*.swp
+pages
+aweather
+src/html.c
+tags

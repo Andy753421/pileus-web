@@ -1,0 +1,12 @@
+Options       +ExecCGI
+AddHandler    cgi-script .cgi
+RewriteEngine on
+
+# Indexes
+RewriteRule   ^$      '/home'
+#RewriteRule   ^$      '/home/about'
+#RewriteRule   ^home$  '/home/about'
+
+# Pileus rewrites
+RewriteCond   %{REQUEST_FILENAME} !-f
+RewriteRule   .* 'pileus.cgi/$0'

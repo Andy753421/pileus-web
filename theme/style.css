@@ -1,0 +1,125 @@
+/* Global styles */
+body {
+	margin:        0;
+	padding:       0;
+	background:    #eeeeee;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin:        0;
+	padding:       0;
+	font-weight:   normal;
+}
+
+a {
+	text-decoration: none;
+}
+
+a img {
+	border:        none;
+}
+
+blockquote {
+	display:       block;
+	font-style:    italic;
+	font-family:   serif;
+	border-left:   solid 0.1em black;
+	padding-left:  4px
+}
+
+/* Title */
+.title {
+	padding:       10px 20px;
+	text-shadow:   1px 1px #fff;
+}
+
+.title span {
+	color:         #666666;
+	font-size:     16pt;
+	font-style:    italic;
+	padding-left:  40px;
+}
+
+.title a {
+	color:         #444444;
+	font-size:     20pt;
+	font-style:    normal;
+}
+
+/* Top nav */
+h1.nav {
+	background:    #444488;
+	font-size:     12pt;
+	border-style:  solid none solid none;
+	border-width:  1px;
+	border-color:  #222244;
+	padding:       5px 10px;
+}
+
+h1.nav a {
+	color:         #ffffff;
+	padding:       5px 10px;
+}
+
+h1.nav a:hover {
+	background:    #6666aa;
+}
+
+h1.nav .cur {
+	font-style:    italic;
+	font-weight:   bold;
+}
+
+/* Side nav */
+h2.nav {
+	float:         left;
+	font-size:     12pt;
+	width:         200px;
+	padding:       20px 0;
+	border-right:  solid 1px #ccc;
+}
+
+h2.nav a {
+	color:         #000000;
+	display:       block;
+	padding:       5px 0 5px 20px;
+}
+
+h2.nav a:hover {
+	background:    #eeeeee;
+}
+
+h2.nav .cur {
+	font-style:    italic;
+	font-weight:   bold;
+}
+
+/* Content */
+.content {
+	padding:       20px 20px 20px 220px;
+	background:    #ffffff;
+}
+
+.content .bottom {
+	clear:         both;
+}
+
+.content h1 {
+	margin:        25px 0px 7px 0px;
+}
+
+.content h2 {
+	margin:        20px 0px 7px 0px;
+}
+
+.content h3 {
+	margin:        15px 0px 7px 0px;
+}
+
+/* Footer */
+.footer {
+	padding:       10px;
+	clear:         both;
+	text-align:    right;
+	border-top:    solid 1px #444444;
+}
