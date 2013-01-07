@@ -140,6 +140,8 @@ menu_t *get_menu_rec(char *prefix, char **parts)
 		if (nameval) next->name = nameval;
 		if (!next->path) next->path = g_strdup(entries[i]);
 		if (!next->name) next->name = g_strdup(entries[i]);
+		if (!parts[0] && !strcmp(next->base, "index"))
+			next->show = SHOW_ACTIVE;
 		cur = cur->next = next;
 	}
 	g_strfreev(entries);
@@ -153,6 +155,8 @@ menu_t *get_menu_rec(char *prefix, char **parts)
 			continue;
 		if ((next = get_menu_entry(prefix, entries[i])))
 			cur = cur->next = next;
+		if (!strcmp(cur->base, "index"))
+			cur->show = SHOW_HIDDEN;
 	}
 	g_strfreev(entries);
 	g_key_file_free(conf);
@@ -165,8 +169,6 @@ menu_t *get_menu_rec(char *prefix, char **parts)
 			cur->kids = get_menu_rec(cur->path, parts+1);
 			cur->show = SHOW_ACTIVE;
 		}
-		if (!strcmp(cur->base, "index"))
-			cur->show = SHOW_HIDDEN;
 	}
 
 error:

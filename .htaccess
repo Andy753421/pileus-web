@@ -4,9 +4,9 @@ RewriteEngine on
 
 # Indexes
 RewriteRule   ^$      '/home'
-#RewriteRule   ^$      '/home/about'
-#RewriteRule   ^home$  '/home/about'
 
 # Pileus rewrites
+RewriteCond   %{REQUEST_URI}      !^/[^/]*/files/
+RewriteCond   %{REQUEST_URI}      !^/(dev|git)/
 RewriteCond   %{REQUEST_FILENAME} !-f
 RewriteRule   .* 'pileus.cgi/$0'

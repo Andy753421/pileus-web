@@ -27,6 +27,13 @@ blockquote {
 	padding-left:  4px
 }
 
+pre {
+	background:    #f8f8f8;
+	border:        solid 1px #bbbbbb;
+	padding:       0.4em;
+	margin-left:   3em;
+}
+
 /* Title */
 .title {
 	padding:       10px 20px;
