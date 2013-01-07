@@ -136,10 +136,13 @@ menu_t *get_menu_rec(char *prefix, char **parts)
 		}
 		char *pathval = g_key_file_get_string(conf, entries[i], "path", NULL);
 		char *nameval = g_key_file_get_string(conf, entries[i], "name", NULL);
+		int   hideval = g_key_file_get_boolean(conf, entries[i], "hide", NULL);
 		if (pathval) next->path = pathval;
 		if (nameval) next->name = nameval;
 		if (!next->path) next->path = g_strdup(entries[i]);
 		if (!next->name) next->name = g_strdup(entries[i]);
+		if (hideval)
+			next->show = SHOW_HIDDEN;
 		if (!parts[0] && !strcmp(next->base, "index"))
 			next->show = SHOW_ACTIVE;
 		cur = cur->next = next;
@@ -201,9 +204,7 @@ menu_t *get_menu(char *path)
 void print_menu(menu_t *menu, int first, int last)
 {
 	for (menu_t *cur = menu; cur; cur = cur->next) {
-		if (cur->show == SHOW_HIDDEN)
-			continue;
-		if (first <= 0)
+		if (first <= 0 && cur->show != SHOW_HIDDEN)
 			print_link(cur->path, cur->name,
 				cur->show == SHOW_ACTIVE);
 		if (cur->kids && last != 0)
