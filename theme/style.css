@@ -34,6 +34,14 @@ pre {
 	margin-left:   3em;
 }
 
+dt {
+	font-style:    italic;
+}
+
+dd {
+	margin-bottom: 0.5em;
+}
+
 /* Title */
 .title {
 	padding:       10px 20px;
