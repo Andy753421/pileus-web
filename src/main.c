@@ -201,14 +201,32 @@ menu_t *get_menu(char *path)
 #endif
 }
 
+int get_slashes(char *path)
+{
+	int slashes = 0;
+	for (int i = 0; path[i]; i++) {
+		if (path[i] == '/')
+			slashes +=  1;
+		if (path[i] != '/' && !path[i+1])
+			slashes *= -1;
+	}
+	return slashes;
+}
+
 void print_menu(menu_t *menu, int first, int last)
 {
 	for (menu_t *cur = menu; cur; cur = cur->next) {
 		if (first <= 0 && cur->show != SHOW_HIDDEN)
 			print_link(cur->path, cur->name,
-				cur->show == SHOW_ACTIVE);
-		if (cur->kids && last != 0)
+				cur->show == SHOW_ACTIVE,
+				get_slashes(cur->path));
+		if (cur->kids && last != 0) {
+			if (first == 0)
+				print_menu_start();
 			print_menu(cur->kids, first-1, last-1);
+			if (first == 0)
+				print_menu_end();
+		}
 	}
 }
 

@@ -41,8 +41,10 @@ struct menu_t {
 /* Helper functions */
 void href(const char *url);
 
-void print_link(char *path, char *name, int cur);
+void print_link(char *path, char *name, int cur, int dir);
 void print_menu(menu_t *menu, int first, int last);
+void print_menu_start(void);
+void print_menu_end(void);
 
 /* Global functions */
 void print_header(page_t *page);

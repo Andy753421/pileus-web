@@ -6,8 +6,20 @@ Content-Type: text/html;charset=UTF-8
 
 <% } %>
 
-<% void print_link(char *path, char *name, int cur) { %>
-	<a href="<% href(path); %>"<% if (cur) { %> class="cur"<% } %>><%= name %></a>
+<% void print_menu_start(void) { %>
+	<div class="nav">
+<% } %>
+
+<% void print_menu_end(void) { %>
+	</div>
+<% } %>
+
+<% void print_link(char *path, char *name, int cur, int dir) { %>
+	<a href="<% href(path); %>"<%
+		if (cur) { %> class="cur"<% }
+	%>><%= name %><%
+		if (dir > 1) { %>/<% }
+	%></a>
 <% } %>
 
 <% void print_page(page_t *page, menu_t *menu) { %>

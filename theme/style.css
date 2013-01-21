@@ -101,6 +101,10 @@ h2.nav .cur {
 	font-weight:   bold;
 }
 
+h2.nav .nav {
+	margin-left:   1em;
+}
+
 /* Content */
 .content {
 	padding:       20px 20px 20px 220px;
